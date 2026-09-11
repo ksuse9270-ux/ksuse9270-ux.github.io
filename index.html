@@ -5,127 +5,249 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🦝 Raccoon Trash Web 浣熊垃圾站</title>
 <style>
-/* 千禧梦核全局样式 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background: #080812;
   background-image: 
     radial-gradient(#221133 1px, transparent 1px);
   background-size: 20px 20px;
-  color:#f9f9ff;
-  font-family: "MS Sans Serif",Verdana,Geneva,sans-serif;
-  line-height:1.6;
-  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ctext y='20' font-size='20'%3E🦝%3C/text%3E%3C/svg%3E"),auto;
+  color: #f9f9ff;
+  font-family: "MS Sans Serif", Verdana, Geneva, sans-serif;
+  line-height: 1.6;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ctext y='20' font-size='20'%3E🦝%3C/text%3E%3C/svg%3E"), auto;
 }
-/* 闪烁标题 千禧经典效果 */
+
 .blink {
   animation: blink 1s infinite;
 }
+
 @keyframes blink {
-  0%,100% {opacity:1;}
-  50% {opacity:0.25;}
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
 }
-/* 抖动动效 拼贴感 */
-.shake:hover{
-  animation:shake 0.2s infinite;
+
+.shake:hover {
+  animation: shake 0.2s infinite;
 }
+
 @keyframes shake {
-  0%{transform:translate(1px,1px)}
-  25%{transform:translate(-1px,-1px)}
-  50%{transform:translate(-1px,1px)}
-  75%{transform:translate(1px,-1px)}
+  0% { transform: translate(1px, 1px); }
+  25% { transform: translate(-1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, -1px); }
 }
-header{
-  text-align:center;
-  padding:40px 10px;
-  border-bottom:2px dashed #9955dd;
+
+header {
+  text-align: center;
+  padding: 40px 10px;
+  border-bottom: 2px dashed #9955dd;
 }
-header h1{
-  font-size:42px;
-  color:#ffdd44;
+
+header h1 {
+  font-size: 42px;
+  color: #ffdd44;
   text-shadow: 2px 2px #cc2288;
 }
-header p{
-  color:#ccccff;
-  margin-top:10px;
+
+header p {
+  color: #ccccff;
+  margin-top: 10px;
 }
-.trash-icon{
-  font-size:32px;
-  display:inline-block;
-  margin:0 8px;
+
+.trash-icon {
+  font-size: 32px;
+  display: inline-block;
+  margin: 0 8px;
 }
-/* 复古侧边通知栏 老网页走马灯 */
-.marquee-box{
-  background:#150822;
-  border:1px solid #7733bb;
-  padding:6px;
-  overflow:hidden;
-  margin:15px auto;
-  max-width:900px;
+
+.marquee-box {
+  background: #150822;
+  border: 1px solid #7733bb;
+  padding: 6px;
+  overflow: hidden;
+  margin: 15px auto;
+  max-width: 900px;
 }
-.marquee{
-  white-space:nowrap;
-  animation:marquee 12s linear infinite;
+
+.marquee {
+  white-space: nowrap;
+  animation: marquee 12s linear infinite;
 }
-@keyframes marquee{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
+
+@keyframes marquee {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
 }
-/* 拼贴网格 */
-.gallery-grid{
-  max-width:1200px;
-  margin:30px auto;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
-  gap:24px;
+
+.pet-container {
+  position: relative;
+  width: 420px;
+  height: 480px;
+  margin: 30px auto;
+  text-align: center;
+  background: #fff;
+  border: 4px ridge #bb77ee;
+  border-radius: 16px;
+  overflow: hidden;
 }
-.raccoon-card{
-  background:#1a0f28;
-  border:2px ridge #bb77ee;
-  padding:12px;
-  transition:0.2s;
+
+.raccoon-pet {
+  max-width: 380px;
+  max-height: 440px;
+  margin-top: 20px;
+  object-fit: contain;
+  transition: transform 0.25s ease;
 }
-.raccoon-card:hover{
+
+.raccoon-pet:hover {
+  transform: scale(1.04);
+}
+
+.speech-bubble {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fffef6;
+  color: #111;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 3px 3px 0 #cc2288;
+  max-width: 260px;
+  z-index: 10;
+  animation: popIn 0.3s ease-out;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #fffef6;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0) translateX(-50%); }
+  70% { transform: scale(1.3) translateX(-50%); }
+  100% { transform: scale(1) translateX(-50%); }
+}
+
+.hand-sticker {
+  position: absolute;
+  width: 90px;
+  z-index: 5;
+}
+
+.glasses-sticker {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  z-index: 6;
+  display: none;
+}
+
+.controls {
+  margin: 20px auto;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.controls button {
+  background: #1a0f28;
+  color: #ffdd44;
+  border: 2px ridge #bb77ee;
+  padding: 10px 16px;
+  font-family: "MS Sans Serif", Verdana, sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.controls button:hover {
+  background: #bb77ee;
+  color: #111;
+  box-shadow: 0 0 12px #dd66ff;
+}
+
+.gallery-grid {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.raccoon-card {
+  background: #1a0f28;
+  border: 2px ridge #bb77ee;
+  padding: 12px;
+  transition: 0.2s;
+}
+
+.raccoon-card:hover {
   transform: scale(1.04) rotate(1deg);
   box-shadow: 0 0 14px #dd66ff;
 }
-.raccoon-card img{
-  width:100%;
-  height:auto;
-  border:1px solid #552288;
+
+.raccoon-card img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #552288;
 }
-.card-caption{
-  margin-top:8px;
-  font-size:13px;
-  color:#ffddaa;
-  text-align:center;
+
+.card-caption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #ffddaa;
+  text-align: center;
 }
-.loading-text{
-  text-align:center;
-  font-size:22px;
-  color:#ffdd44;
-  grid-column: 1 / -1;
+
+footer {
+  margin-top: 60px;
+  padding: 25px;
+  text-align: center;
+  border-top: 2px dashed #9955dd;
+  color: #aaaaff;
+  font-size: 14px;
 }
-/* 底部信息栏 怀旧个人站 */
-footer{
-  margin-top:60px;
-  padding:25px;
-  text-align:center;
-  border-top:2px dashed #9955dd;
-  color:#aaaaff;
-  font-size:14px;
+
+.trash-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 40px;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 </style>
 </head>
 <body>
 <header>
   <h1 class="blink">🦝 RACCOON TRASH WEB 🦝</h1>
-  <p>「浣熊垃圾收集站 | 千禧梦核拼贴收藏 · 自动加载浣熊图片」</p>
+  <p>「浣熊垃圾收集站 | 真实浣熊表情包 · 千禧梦核拼贴 · 互动宠物」</p>
   <div>
     <span class="trash-icon shake">🗑️</span>
     <span class="trash-icon shake">🥡</span>
@@ -136,54 +258,162 @@ footer{
 
 <div class="marquee-box">
   <div class="marquee">
-    ★ WELCOME TO RACCOON WORLD ★ 浣熊表情包 · 恶搞短片 · 垃圾小偷图鉴 ★ 2007 WEB STYLE ★ 刷新页面换一批浣熊！★
+    ★ WELCOME TO RACCOON WORLD ★ 浣熊表情包 · 垃圾小偷图鉴 · 千禧拼贴收藏 ★ 点浣熊、切换表情、翻垃圾桶！★
   </div>
 </div>
 
-<main class="gallery-grid" id="raccoonGallery">
-  <div class="loading-text">🦝正在翻垃圾桶寻找浣熊图片，请稍候...</div>
+<main>
+  <div class="pet-container">
+    <div class="speech-bubble" id="speechBubble">嗨，我是来偷垃圾的。</div>
+    <img id="handSticker" class="hand-sticker" style="display:none;">
+    <img id="glassesSticker" class="glasses-sticker" src="https://i.imgur.com/9ZkXpQj.png" alt="眼镜贴纸">
+    <img src="https://i.imgur.com/2qFg38b.jpg" alt="互动浣熊" class="raccoon-pet" id="raccoonPet">
+  </div>
+
+  <div class="controls">
+    <button onclick="changeRaccoon(0)">👋 摊手浣熊</button>
+    <button onclick="changeRaccoon(1)">🤓 眼镜浣熊</button>
+    <button onclick="changeRaccoon(2)">🌹 送花浣熊</button>
+    <button onclick="changeRaccoon(3)">😵 躺平浣熊</button>
+    <button onclick="changeRaccoon(4)">🔍 探头浣熊</button>
+    <button onclick="changeRaccoon(5)">🧸 两只浣熊</button>
+  </div>
+
+  <div class="gallery-grid" id="raccoonGallery">
+    <div class="raccoon-card">
+      <img src="https://i.imgur.com/2qFg38b.jpg">
+      <div class="card-caption">摊手浣熊</div>
+    </div>
+    <div class="raccoon-card">
+      <img src="https://i.imgur.com/c43a.jpg">
+      <div class="card-caption">眼镜浣熊</div>
+    </div>
+    <div class="raccoon-card">
+      <img src="https://i.imgur.com/fe74.jpg">
+      <div class="card-caption">送花浣熊</div>
+    </div>
+    <div class="raccoon-card">
+      <img src="https://i.imgur.com/ef7a.jpg">
+      <div class="card-caption">躺平浣熊</div>
+    </div>
+    <div class="raccoon-card">
+      <img src="https://i.imgur.com/3f93.jpg">
+      <div class="card-caption">探头浣熊</div>
+    </div>
+    <div class="raccoon-card">
+      <img src="https://i.imgur.com/6BnXwQk.jpg">
+      <div class="card-caption">两只浣熊</div>
+    </div>
+  </div>
 </main>
 
+<div class="trash-float shake" onclick="changeRaccoon(3)">🗑️</div>
+
 <footer>
-  <p>🦝 浣熊收集网站 | 2008怀旧个人网页风格 | 图片来自Reddit r/raccoon社区</p>
-  <p>🗑️ 请勿投喂野生浣熊！它们只会偷走你的垃圾</p>
+  <p>🦝 浣熊收集网站 | 真实表情包宠物 | Neocities千禧怀旧网页</p>
+  <p>🗑️ 现实中不要投喂野生浣熊，它们真的会抢垃圾</p>
 </footer>
 
 <script>
-// 页面加载弹窗
-window.onload = function(){
-  setTimeout(()=>{
-    alert("🦝欢迎来到浣熊垃圾收集站！\n小心！浣熊正在翻你的垃圾桶！");
-  }, 1200)
+const pet = document.getElementById("raccoonPet");
+const bubble = document.getElementById("speechBubble");
+const handImg = document.getElementById("handSticker");
+const glassesImg = document.getElementById("glassesSticker");
+
+const raccoonList = [
+  {
+    img: "https://i.imgur.com/2qFg38b.jpg",
+    text: "不是我偷的，是垃圾先诱惑我。",
+    hand: "https://i.imgur.com/hand_yellow.png",
+    handStyle: "top:100px;left:40px;",
+    glasses: false
+  },
+  {
+    img: "https://i.imgur.com/c43a.jpg",
+    text: "戴上眼镜，我就是文化垃圾小偷。",
+    hand: "https://i.imgur.com/hand_yellow.png",
+    handStyle: "top:110px;right:30px;",
+    glasses: true
+  },
+  {
+    img: "https://i.imgur.com/fe74.jpg",
+    text: "送你一朵从垃圾桶里捡的花。",
+    hand: "https://i.imgur.com/hand_tulip.png",
+    handStyle: "top:90px;left:20px;",
+    glasses: false
+  },
+  {
+    img: "https://i.imgur.com/ef7a.jpg",
+    text: "躺平了，今天不想偷垃圾。",
+    hand: "",
+    handStyle: "display:none",
+    glasses: false
+  },
+  {
+    img: "https://i.imgur.com/3f93.jpg",
+    text: "我看看，哪里有垃圾袋。",
+    hand: "",
+    handStyle: "display:none",
+    glasses: false
+  },
+  {
+    img: "https://i.imgur.com/6BnXwQk.jpg",
+    text: "我们只是两只无辜浣熊。",
+    hand: "",
+    handStyle: "display:none",
+    glasses: false
+  }
+];
+
+function changeRaccoon(index) {
+  const item = raccoonList[index];
+  pet.src = item.img;
+  say(item.text);
+
+  if (item.hand) {
+    handImg.src = item.hand;
+    handImg.style.cssText = item.handStyle;
+    handImg.style.display = "block";
+  } else {
+    handImg.style.display = "none";
+  }
+
+  if (item.glasses) {
+    glassesImg.style.display = "block";
+  } else {
+    glassesImg.style.display = "none";
+  }
+
+  pet.style.transform = "scale(1.08)";
+  setTimeout(() => pet.style.transform = "", 300);
 }
 
-// 自动拉取reddit r/raccoon图片
-async function loadRaccoons() {
-  const gallery = document.getElementById("raccoonGallery");
-  try {
-    const res = await fetch("https://www.reddit.com/r/raccoon.json?limit=25");
-    const data = await res.json();
-    gallery.innerHTML = ""; //清空加载文字
-    const posts = data.data.children;
-    posts.forEach(post => {
-      const p = post.data;
-      // 只处理带图片的帖子，排除视频
-      if(p.post_hint === "image"){
-        const card = document.createElement('div');
-        card.className = "raccoon-card";
-        card.innerHTML = `
-          <img src="${p.url}" alt="浣熊">
-          <div class="card-caption">${p.title.substring(0,35)}</div>
-        `
-        gallery.appendChild(card);
-      }
-    })
-  } catch(err){
-    gallery.innerHTML = `<div class="loading-text">😿浣熊找不到图片了！刷新页面重试</div>`;
-    console.error(err);
-  }
+function say(text) {
+  bubble.textContent = text;
+  bubble.style.animation = "none";
+  void bubble.offsetWidth;
+  bubble.style.animation = "popIn 0.3s ease-out";
 }
-loadRaccoons();
+
+pet.addEventListener("click", () => {
+  const messages = [
+    "别点我，我正在寻找垃圾桶。",
+    "你愿意和我一起偷垃圾吗？",
+    "人类的塑料袋最好玩了。",
+    "我的梦想是拥有一整箱垃圾。",
+    "我看起来可爱，但会抢零食。"
+  ];
+  const i = Math.floor(Math.random() * messages.length);
+  say(messages[i]);
+  pet.style.transform = "scale(1.05) rotate(1deg)";
+  setTimeout(() => pet.style.transform = "", 400);
+});
+
+window.onload = function() {
+  setTimeout(() => {
+    alert("🦝欢迎来到浣熊垃圾收集站！\n点击按钮切换真实浣熊表情包宠物。");
+  }, 1200);
+};
 </script>
 </body>
 </html>
