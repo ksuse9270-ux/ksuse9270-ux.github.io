@@ -105,6 +105,12 @@ header p{
   color:#ffddaa;
   text-align:center;
 }
+.loading-text{
+  text-align:center;
+  font-size:22px;
+  color:#ffdd44;
+  grid-column: 1 / -1;
+}
 /* 底部信息栏 怀旧个人站 */
 footer{
   margin-top:60px;
@@ -119,7 +125,7 @@ footer{
 <body>
 <header>
   <h1 class="blink">🦝 RACCOON TRASH WEB 🦝</h1>
-  <p>「浣熊垃圾收集站 | 千禧梦核拼贴收藏」</p>
+  <p>「浣熊垃圾收集站 | 千禧梦核拼贴收藏 · 自动加载浣熊图片」</p>
   <div>
     <span class="trash-icon shake">🗑️</span>
     <span class="trash-icon shake">🥡</span>
@@ -130,46 +136,54 @@ footer{
 
 <div class="marquee-box">
   <div class="marquee">
-    ★ WELCOME TO RACCOON WORLD ★ 浣熊表情包 · 恶搞短片 · 垃圾小偷图鉴 ★ 2007 WEB STYLE ★ 收集一切浣熊！★
+    ★ WELCOME TO RACCOON WORLD ★ 浣熊表情包 · 恶搞短片 · 垃圾小偷图鉴 ★ 2007 WEB STYLE ★ 刷新页面换一批浣熊！★
   </div>
 </div>
 
-<main class="gallery-grid">
-  <!-- 浣熊卡片，复制这一块就可以无限新增图片 -->
-  <div class="raccoon-card">
-    <img src="https://i.imgur.com/5Q6x6yY.jpg" alt="浣熊">
-    <div class="card-caption">偷吃饼干浣熊</div>
-  </div>
-  <div class="raccoon-card">
-    <img src="https://i.imgur.com/OXl9z2L.jpg" alt="浣熊表情包">
-    <div class="card-caption">疑惑浣熊meme</div>
-  </div>
-  <div class="raccoon-card">
-    <img src="https://i.imgur.com/9D7h20s.jpg" alt="垃圾桶浣熊">
-    <div class="card-caption">翻垃圾桶专业户</div>
-  </div>
-  <div class="raccoon-card">
-    <img src="https://i.imgur.com/2qFg38b.jpg" alt="浣熊">
-    <div class="card-caption">塑料袋浣熊</div>
-  </div>
-  <div class="raccoon-card">
-    <img src="https://i.imgur.com/7wQZ1dN.jpg" alt="梦核浣熊">
-    <div class="card-caption">发呆浣熊</div>
-  </div>
+<main class="gallery-grid" id="raccoonGallery">
+  <div class="loading-text">🦝正在翻垃圾桶寻找浣熊图片，请稍候...</div>
 </main>
 
 <footer>
-  <p>🦝 浣熊收集网站 | 2008怀旧个人网页风格 | 所有图片来自网络</p>
+  <p>🦝 浣熊收集网站 | 2008怀旧个人网页风格 | 图片来自Reddit r/raccoon社区</p>
   <p>🗑️ 请勿投喂野生浣熊！它们只会偷走你的垃圾</p>
 </footer>
 
 <script>
-// 页面加载小弹窗，复刻老网站的alert弹窗怀旧感
+// 页面加载弹窗
 window.onload = function(){
   setTimeout(()=>{
     alert("🦝欢迎来到浣熊垃圾收集站！\n小心！浣熊正在翻你的垃圾桶！");
   }, 1200)
 }
+
+// 自动拉取reddit r/raccoon图片
+async function loadRaccoons() {
+  const gallery = document.getElementById("raccoonGallery");
+  try {
+    const res = await fetch("https://www.reddit.com/r/raccoon.json?limit=25");
+    const data = await res.json();
+    gallery.innerHTML = ""; //清空加载文字
+    const posts = data.data.children;
+    posts.forEach(post => {
+      const p = post.data;
+      // 只处理带图片的帖子，排除视频
+      if(p.post_hint === "image"){
+        const card = document.createElement('div');
+        card.className = "raccoon-card";
+        card.innerHTML = `
+          <img src="${p.url}" alt="浣熊">
+          <div class="card-caption">${p.title.substring(0,35)}</div>
+        `
+        gallery.appendChild(card);
+      }
+    })
+  } catch(err){
+    gallery.innerHTML = `<div class="loading-text">😿浣熊找不到图片了！刷新页面重试</div>`;
+    console.error(err);
+  }
+}
+loadRaccoons();
 </script>
 </body>
 </html>
