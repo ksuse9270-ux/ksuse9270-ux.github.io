@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦝 Raccoon Trash Web 浣熊垃圾站</title>
+<style>
+/* 千禧梦核全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #080812;
+  background-image: 
+    radial-gradient(#221133 1px, transparent 1px);
+  background-size: 20px 20px;
+  color:#f9f9ff;
+  font-family: "MS Sans Serif",Verdana,Geneva,sans-serif;
+  line-height:1.6;
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ctext y='20' font-size='20'%3E🦝%3C/text%3E%3C/svg%3E"),auto;
+}
+/* 闪烁标题 千禧经典效果 */
+.blink {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0%,100% {opacity:1;}
+  50% {opacity:0.25;}
+}
+/* 抖动动效 拼贴感 */
+.shake:hover{
+  animation:shake 0.2s infinite;
+}
+@keyframes shake {
+  0%{transform:translate(1px,1px)}
+  25%{transform:translate(-1px,-1px)}
+  50%{transform:translate(-1px,1px)}
+  75%{transform:translate(1px,-1px)}
+}
+header{
+  text-align:center;
+  padding:40px 10px;
+  border-bottom:2px dashed #9955dd;
+}
+header h1{
+  font-size:42px;
+  color:#ffdd44;
+  text-shadow: 2px 2px #cc2288;
+}
+header p{
+  color:#ccccff;
+  margin-top:10px;
+}
+.trash-icon{
+  font-size:32px;
+  display:inline-block;
+  margin:0 8px;
+}
+/* 复古侧边通知栏 老网页走马灯 */
+.marquee-box{
+  background:#150822;
+  border:1px solid #7733bb;
+  padding:6px;
+  overflow:hidden;
+  margin:15px auto;
+  max-width:900px;
+}
+.marquee{
+  white-space:nowrap;
+  animation:marquee 12s linear infinite;
+}
+@keyframes marquee{
+  from{transform:translateX(100%)}
+  to{transform:translateX(-100%)}
+}
+/* 拼贴网格 */
+.gallery-grid{
+  max-width:1200px;
+  margin:30px auto;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+  gap:24px;
+}
+.raccoon-card{
+  background:#1a0f28;
+  border:2px ridge #bb77ee;
+  padding:12px;
+  transition:0.2s;
+}
+.raccoon-card:hover{
+  transform: scale(1.04) rotate(1deg);
+  box-shadow: 0 0 14px #dd66ff;
+}
+.raccoon-card img{
+  width:100%;
+  height:auto;
+  border:1px solid #552288;
+}
+.card-caption{
+  margin-top:8px;
+  font-size:13px;
+  color:#ffddaa;
+  text-align:center;
+}
+/* 底部信息栏 怀旧个人站 */
+footer{
+  margin-top:60px;
+  padding:25px;
+  text-align:center;
+  border-top:2px dashed #9955dd;
+  color:#aaaaff;
+  font-size:14px;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="blink">🦝 RACCOON TRASH WEB 🦝</h1>
+  <p>「浣熊垃圾收集站 | 千禧梦核拼贴收藏」</p>
+  <div>
+    <span class="trash-icon shake">🗑️</span>
+    <span class="trash-icon shake">🥡</span>
+    <span class="trash-icon shake">🛒</span>
+    <span class="trash-icon shake">🗑️</span>
+  </div>
+</header>
+
+<div class="marquee-box">
+  <div class="marquee">
+    ★ WELCOME TO RACCOON WORLD ★ 浣熊表情包 · 恶搞短片 · 垃圾小偷图鉴 ★ 2007 WEB STYLE ★ 收集一切浣熊！★
+  </div>
+</div>
+
+<main class="gallery-grid">
+  <!-- 浣熊卡片，复制这一块就可以无限新增图片 -->
+  <div class="raccoon-card">
+    <img src="https://i.imgur.com/5Q6x6yY.jpg" alt="浣熊">
+    <div class="card-caption">偷吃饼干浣熊</div>
+  </div>
+  <div class="raccoon-card">
+    <img src="https://i.imgur.com/OXl9z2L.jpg" alt="浣熊表情包">
+    <div class="card-caption">疑惑浣熊meme</div>
+  </div>
+  <div class="raccoon-card">
+    <img src="https://i.imgur.com/9D7h20s.jpg" alt="垃圾桶浣熊">
+    <div class="card-caption">翻垃圾桶专业户</div>
+  </div>
+  <div class="raccoon-card">
+    <img src="https://i.imgur.com/2qFg38b.jpg" alt="浣熊">
+    <div class="card-caption">塑料袋浣熊</div>
+  </div>
+  <div class="raccoon-card">
+    <img src="https://i.imgur.com/7wQZ1dN.jpg" alt="梦核浣熊">
+    <div class="card-caption">发呆浣熊</div>
+  </div>
+</main>
+
+<footer>
+  <p>🦝 浣熊收集网站 | 2008怀旧个人网页风格 | 所有图片来自网络</p>
+  <p>🗑️ 请勿投喂野生浣熊！它们只会偷走你的垃圾</p>
+</footer>
+
+<script>
+// 页面加载小弹窗，复刻老网站的alert弹窗怀旧感
+window.onload = function(){
+  setTimeout(()=>{
+    alert("🦝欢迎来到浣熊垃圾收集站！\n小心！浣熊正在翻你的垃圾桶！");
+  }, 1200)
+}
+</script>
+</body>
+</html>
